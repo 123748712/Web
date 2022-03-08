@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+/*요소선택자*/
+p {
+  color: orange;
+}
+/*id선택자*/
+#a {
+  color: red;
+}
+/*class선택자*/
+.b {
+  color: blue;
+}
+/*전체선택자*/
+* {
+  border: 5px solid lightgray;
+}
+/*속성선택자*/
+p[title="국화"] {
+  /*border: 3px dotted hotpink;*/
+  border-width: 1px;
+  border-style: dashed solid dotted double;
+  border-color: pink red yellow green;
+}
+</style>
+</head>
+<body>
+  <p title="무궁화" id="a">11</p>
+  <p title="프리지아" class="b">22</p>
+  <p title="국화" class="b">33</p>
+  <p title="코스모스" class="b">44</p>
+</body>
+</html>
