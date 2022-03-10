@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.td1 {
+  word-break: break-all;
+}
+.td2 {
+  word-break: keep-all;
+}
+.td3 {
+  word-break: keep-all;
+  text-align: justify;
+}
+#tr1 {
+  font-weight: bold;
+}
+tr {
+  border: 1px solid red;
+}
+</style>
+</head>
+<body>
+  <table border="1">
+    <tr id="tr1">
+      <td class="td1">word-break: break-all (글자단위 자름)</td>
+      <td class="td2">word-break: keep-all (단어단위 자름)</td>
+      <td class="td3">keep-all, text-align: justify(양쪽정렬)</td>
+    </tr>
+    <tr>
+      <td class="td1">저 하늘을 높이 날고 있어	(그때 니가 내게 줬던 두 날개로)</td>
+      <td class="td2">저 하늘을 높이 날고 있어	(그때 니가 내게 줬던 두 날개로)</td>
+      <td class="td3">저 하늘을 높이 날고 있어	(그때 니가 내게 줬던 두 날개로)</td>
+    </tr>
+    <tr>
+      <td class="td1">Yeah you makin' me a boy with love</td>
+      <td class="td2">Yeah you makin' me a boy with love</td>
+      <td class="td3">Yeah you makin' me a boy with love</td>
+    </tr>
+   
+  </table>
+</body>
+</html>

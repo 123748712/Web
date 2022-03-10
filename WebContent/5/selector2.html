@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+h1 {
+  text-align: center;
+}
+#d1 div {
+  padding: 5px;
+  background-color: gold;
+  color: brown;
+  font-weight: bold;
+  border: 1px solid black;
+}
+#d1>div {
+  border: 3px dotted red;
+}
+#d1 p {
+  border: 2px solid green;
+}
+#d1 > p {
+  color: red;
+  font-weight: bold;
+}
+#p3+div {
+  color: blue;
+  font-weight: bold;
+}
+#p3~p {
+  border: 2px solid purple;
+}
+#p3~div {
+  border: 2px solid orange;
+}
+
+</style>
+</head>
+<body>
+  <h1>selector</h1>
+  
+  <div id="d1">
+    <p>자손자식 단락</p>
+    <div>
+      <p>자손자식 단락</p>
+      <div>자손자식 단락인데 div</div>
+    </div>
+  </div>
+  
+  <br><hr>
+  
+  <div>
+    <p id="p3">형제1 p</p>
+    <div>형제2 div</div>
+    <p>형제3 p</p>
+    <p>형제4 p</p>
+    <p>형제5 p</p>
+    <div>형제6 div</div>
+    <p>형제7 p</p>
+  </div>
+</body>
+</html>
