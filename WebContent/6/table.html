@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table, div {
+  width: 500px;
+  margin: 20px;
+  height: 20px;
+}
+#tb1 {
+  table-layout: auto; /*default*/
+  box-shadow: 10px 10px 5px gray;
+}
+#tb2 {
+  /* 고정사이즈의 테이블을 생성 - 가로로 넘치는 컨텐츠는 word-wrap으로 제어 */
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+div {
+  background: yellow;
+}
+</style>
+</head>
+<body>
+  <table border="1">
+    <caption>각 cell(td)에 너비 값 지정</caption>
+    <tr>
+      <td>11111111111</td>
+      <td>2222</td>
+      <td>소개33333333333333</td>
+      <td>444444</td>
+      <td>5555555555555555555555555</td>
+    </tr>
+  </table>
+  
+  <table border="1" id="tb1">
+    <caption>table에 너비 값 지정 - auto</caption>
+    <tr>
+      <td>11111111111</td>
+      <td>2222</td>
+      <td>소개33333333333333</td>
+      <td>444444</td>
+      <td>555555555555555555555555dsflkejsflekfsjlekjflkesjflkejksfjlkejflkesj5</td>
+    </tr>
+  </table>
+  
+  <table border="1" id="tb2">
+    <caption>table에 너비 값 지정 - fixed</caption>
+    <tr>
+      <td>11111111111</td>
+      <td>2222</td>
+      <td>소개33333333333333</td>
+      <td>444444</td>
+      <td>5555555555555555555555555</td>
+    </tr>
+  </table>
+  
+  <div>500px</div>
+  
+
+</body>
+</html>
