@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  border: 1px solid black;
+  /* border-box는 기존 요소의 너비값에 테두리와 안쪽여백만을 포함하여 계산한다 */
+  box-sizing: border-box;
+  margin: 2px;
+}
+#header {
+  width: calc(100% - 4px);
+  height: 100px;
+  background-color: yellow;
+}
+#nav {
+  width: calc(30% - 4px);
+  height: 600px;
+  background-color: red;
+  float: left;
+/*   opacity: .3; */
+}
+#blank {
+  visibility: hidden;
+} 
+#content {
+  width: calc(70% - 4px);
+  height: 600px;
+  background-color: green;
+  float: right;
+/*   opacity: .3; */
+}
+#footer {
+  width: calc(100% - 4px);
+  height: 80px;
+  background-color: violet;
+  clear: both;
+}
+</style>
+</head>
+<body>
+  <div id="header">header</div>
+  <div id="nav">nav</div>
+  <span id="blank"></span>
+  <div id="content">content</div>
+  <div id="footer">footer</div>
+</body>
+</html>

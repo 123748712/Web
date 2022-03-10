@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+p {
+  border: 2px solid red;
+  width: 300px;
+  height: 100px;
+}
+.ex1 {
+  /* inline은 사이즈 조절이 불가하므로 설정한 높이, 너비 값이 무시된다 */
+  display: inline;
+}
+.ex2 {
+  dispaly: block;
+  height: 50px;
+  width: 100px;
+}
+.ex3 {
+  /* inline요소처럼 자신의 영역만을 표현하되 사이즈 조절 가능 */
+  display: inline-block;
+  height: 50px;
+  width: 100px;
+}
+.ex4 {
+  display: none;
+}
+</style>
+</head>
+<body>
+  <h2>display: inline</h2>
+  <div>
+    동해물과 백두산이 마르고 닳도록
+    <p class="ex1">대한사람</p>
+    대한으로 길이 보전하세
+  </div>
+  <h2>display: block</h2>
+  <div>
+    동해물과 백두산이 마르고 닳도록
+    <p class="ex2">대한사람</p>
+    대한으로 길이 보전하세
+  </div>
+  <h2>display: inline-block</h2>
+  <div>
+    동해물과 백두산이 마르고 닳도록
+    <p class="ex3">대한사람</p>
+    대한으로 길이 보전하세
+  </div>
+  <h2>display: none</h2>
+  <div>
+    동해물과 백두산이 마르고 닳도록
+    <p class="ex4">대한사람</p>
+    대한으로 길이 보전하세
+  </div>
+</body>
+</html>
