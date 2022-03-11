@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+</head>
+<body>
+  <pre>
+  	getElementById() : id를 이용해서 요소에 접근
+  					   단어들 첫자 대문자 표기에 주의
+  					  id는 unique하기 때문에 단일 요소가 검색된다(=element)
+  </pre>
+  <h1 id="test">This is a heading</h1>
+  
+  <script>
+//     var e;
+    function func(){
+    	e = document.getElementById("test");
+    	e.style.color = "orange";
+    }
+    function calc(){
+    	var x = parseInt(document.getElementById("x").value);
+    	var y = parseInt(document.getElementById("y").value);
+    	//console.log를 찍어 값을 제대로 가져오는지 확인해본다(디버깅)
+    	console.log(x,y);
+    	var sum = x + y;
+    	document.getElementById("sum").value = sum;
+    }
+	function getset(){
+		e = document.getElementById("test");
+		console.log(e.innerHTML); //id로 접근한 요소의 내용 get
+		e.innerHTML = "내용변경"; 
+	}    
+  </script>
+  <button type="button" 
+  			onclick="func()">클릭하세요</button>
+  <button type="button" onclick="getset()">GET/SET</button>
+
+  <hr>
+  
+  <h3>덧셈 계산기</h3>
+  <form>
+    첫번째 정수 : <input id="x"><br>
+    두번째 정수 : <input id="y"><br>
+  <input type="button"
+    	value="계산" onclick="calc()">
+  <br>
+    합계 : <input id="sum">
+  </form>
+</body>
+</html>

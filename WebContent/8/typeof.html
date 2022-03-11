@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script>
+	var a;
+	document.write("typeof a : " + typeof a + "<br>");
+	
+	var a = 3;
+	document.write("typeof a=3 : " + typeof a + "<br>");
+	
+	var a = "javascript";
+	document.write("typeof a='javascript' : " + typeof a + "<br>");
+	
+	var a = true;
+	document.write("typeof a=true : " + typeof a + "<br>");
+	
+	var a = ["html","CSS","JAVASCRIPT"];
+	document.write("typeof a=[ARRAY] : " + typeof a + "<br>");
+	
+	function a(){};
+	document.write("typeof fn a(){}: " + typeof a + "<br>");
+	
+	var a = function a(){};
+	document.write("typeof a=fn(){}: " + typeof a + "<br>");
+	
+	//new
+	var b = Symbol("심볼의 설명");
+	document.write("var b = Symbol() : " + typeof b );
+	
+	//Uncaught TypeError: Cannot convert a Symbol value to a string
+	//심볼은 문자열과 근본이 다르기 때문에 타입변환이 안돼는 특성을 갖음
+	//자바스크립트는 원래 자동형변환에 자유로운 편이지만 심볼은 예외로 한다
+	document.write(" function>> "+ a + "<br>");	//출력됌
+	//document.write(" symbol>> "+ b);			//출력 안됌
+	
+	//굳이 내용을 확인하고자 할때 toString() 사용
+	document.write("옛다~~ 보아라 >> " + b.toString() );
+	alert(b.description); //디버깅의 용도. 생성된 심볼을 구분하기 위한 확인용 데이터로서 활용
+	
+	//대체로 객체의 속성 키로서 값을 얻기위해 사용되며, 유일하기 때문에 다른 속성과의 충돌을 막는 장점
+	var std2 = Symbol();
+	const class405 = {
+		t1: "lyj",
+		std1: "kse",
+		std2: "jh",
+		[std2]: "ddd",
+		std3: "kjs",
+		std4: "pks"
+	};
+	console.log(Object.entries(class405));
+</script>
+</head>
+<body>
+  <pre>
+  	typeof : 변수의 데이터 타입을 반환하는 연산자
+  	
+  	원시타입(primitive data type)
+  	string : 데이터 타입이 문자열
+  	number : 데이터 타입이 숫자
+  	boolean : 데이터 타입이 불리언
+  	null : 지정되지 않은 빈 상태
+  	undefined : 변수가 정의되지 않았거나, 값이 없는 상태
+  	object(또는 function) : 데이터 타입이 함수 또는 배열 등의 객체인 상태
+  	------------------------------------------------------
+  	ES6에서 추가된 7번째 원시 타입 Symbol
+  	: 유일성이 보장되는 자료형으로 변경 불가능한 원시타입의 값
+  	: 이름의 충돌위험이 없는 객체의 유일한 프로퍼티 키를 만들기 위해 사용된다
+  </pre>
+</body>
+</html>
+
+
+
+
