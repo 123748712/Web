@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function calc(){
+	
+  let x = parseInt(prompt("첫번째 정수 입력"));
+  let y = parseInt(prompt("두번째 정수 입력"));
+  let z = prompt("연산자 입력");
+  
+  //if문
+  let sum;
+  
+//   /* 
+  if(z == '+'){
+	  sum = x+y;
+  }else if(z == '-'){
+	  sum = x-y;
+  }else if(z == '*'){
+	  sum = x*y;
+  }else if(z == '/'){
+	  sum = x/y;
+  }else {
+	 alert("+,-,*,/ 연산자 중 하나를 입력해라"); 
+	 return calc();
+  }
+//   */
+  
+  //switch문
+  /* switch(z){
+  case '+':
+	  sum = x+y;
+	  break;
+  case '-':
+	  sum = x-y;
+	  break;
+  case '*':
+	  sum = x*y;
+	  break;
+  case '/':
+	  sum = x/y;
+	  break;
+  } */
+  
+  let str = "첫번째 수 : " + x + "<br>";
+  	  str += "두번째 수 : " + y + "<br>";
+  	  str += "합계 : " + x + z + y + "=" + sum;
+  document.getElementsByTagName('span')[0].innerHTML += str + "<br>";
+}
+</script>
+</head>
+<body>
+  <h4>prompt로 정수2개와 연산자(+,-,*,/)1개를 입력받아 연산 후 결과 출력</h4>
+  <input type="button" value="계산" onclick="calc()"> <br>
+  <span></span>
+</body>
+</html>

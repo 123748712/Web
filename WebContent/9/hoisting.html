@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+  console.log("a : " + a);
+  var a;
+  a = "에러가 안나네요?";
+  console.log("a : " + a);
+  
+  //함수 호출
+  showName();
+  
+  //선언식 함수
+  //function showName(){
+  //표현식 함수
+  showName = function(){  
+	  console.log(name);
+	  let name = 'name';
+	  console.log(name);
+  }
+</script>
+</head>
+<body>
+  <pre>
+  	var키워드를 통해 정의된 변수의 선언문을 유효범위의 최상단으로 끌어올리는 행위
+  	이 과정은 선언과 할당(=초기화)이 분리된 상태이다
+  	
+  	이때 선언만 상단으로 올라가기 때문에 (=변수 사용은 가능하나 값이 없는 상태)
+  	예외가 발생하는 등의 의도치 않은 동작이 발생할 수 있기때문에 호이스팅의 영향을 최소화 하는것이 좋다
+  
+  	호이스팅은 var키워드와, 선언식함수에만 유효하다
+  	(=let,const키워드 및 표현식함수에는 적용안됌 / 해당 키워드와 함수 활용을 권장)
+  
+  	변수 호이스팅 : 변수 선언 전 출력해도 에러를 발생시키지 않음
+  	함수 호이스팅 : 선언문 형태의 함수를 미리 호출해도 에러를 발생시키지 않음
+  </pre>
+</body>
+</html>
+
+
+
+
+
+

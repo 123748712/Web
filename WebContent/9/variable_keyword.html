@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//var 키워드 - 재선언 가능
+// var name = "asdfasdf";
+// console.log(name);
+// var name = "javascript";
+// console.log(name);
+
+//let 키워드 - 재선언 불가하지만 재할당은 가능
+// let name = "asdfasdf";
+// console.log(name);
+//let name = "javascript";	//Identifier 'name' has already been declared
+							//식별자 'name'이(가) 이미 선언되었습니다.
+// name = "javascript";							
+// console.log(name);
+
+//const 키워드 - 재선언, 재할당 불가
+const NAME = "asdfasdf";
+console.log(NAME);
+NAME = "javascript";	//Assignment to constant variable
+						//상수 변수에 할당(할수 없다)
+console.log(NAME);
+
+/*
+TYPE ERROR의 발생
+1.자료형이 맞지않아서 연산을 수행할 수 없을 때
+2.변경할 수 없는 값을 수정하려 할 때
+3.부적절한 방법으로 값을 사용하고자 할 때
+*/
+</script>
+</head>
+<body>
+  <pre>
+  	변수 키워드 3종 - var, let, const
+  	var
+  		- scope(유효범위) : 함수범위
+  		- 변수 호이스팅이 발생 (=선언 이전 참조 가능한 비정상적 흐름의 코드 작성을 가능케 하는 기능)
+  		- 변수 선언시 키워드 생략을 허용 (=의도치 않은 변수의 전역화를 발생시킴)
+  		- 재선언과 재할당 가능
+  		>> 위의 기능들이 코드의 복잡도를 높이고 오류를 발생하는 등 문제가 다수 발생하여
+  		이를 보완하고자 새롭게 만들어진 키워드가 ES6버전의 let과 const이다
+  		
+  	let
+  		- scope : 블록('{}')범위
+  		- 변수 사용전까지 초기화 되지 않음
+  		- 변수 재선언 불가
+  		- 변수 재할당 가능
+  		- 변수 호이스팅 불가
+  		
+  	const
+  		- scope : 블록범위
+  		- 변수 재선언 및 재할당 불가
+  		- 변하지 않는 값을 갖는 변수 생성(=상수 변수)
+  		- 선언시 반드시 값이 할당되어야 하며 할당되지 않으면 에러 발생
+  		- 강제는 아니지만 보통 대문자를 사용해서 선언
+  </pre>
+</body>
+</html>
+
+
+
+
