@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+label {
+  display: inline-block;
+  width: 70px;
+}
+span {
+  border: 1px solid red;
+  background-color: yellow;
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+}
+</style>
+</head>
+<body>
+  <script>
+  let x;
+  let y;
+  function calc(a){
+	  
+	  //더하기 연산을 위해 String타입의 값을 정수형으로 변환
+	  x = parseInt(document.getElementById('x').value);
+	  y = parseInt(document.getElementById('y').value);
+// 	  console.log(typeof x);
+
+	  //비교연산 - if, switch
+	  let rst = "";
+	  switch(a){
+	  case '+' :
+		  rst = add();
+		  break;
+	  case '-' :
+		  rst = sub();
+		  break;
+	  case '*' :
+		  rst = multi();
+		  break;
+	  case '/' :
+		  rst = divd();
+		  break;
+	  }
+	  //출력
+	  document.getElementById('rst').value = rst;
+	  document.getElementById('sp1').textContent = x;
+	  document.getElementById('sp2').textContent = y;
+	  document.getElementById('sp3').textContent = rst;
+  }
+  function add(){
+	  return x + y;
+  }
+  function sub(){
+	  return x - y;
+  }
+  function multi(){
+	  return x * y;
+  }
+  function divd(){
+	  let sum = x/y;
+	  return sum.toFixed(2);
+  }
+  </script>
+  <form>
+    <label for="x">첫번째 값</label>
+    <input id="x"> <br>
+    <label for="y">두번째 값</label>
+    <input id="y"> <br>
+    <label for="rst">결과 값</label>
+    <input id="rst"> <br>
+    
+    <input type="button" value="+" onclick="calc('+')">
+    <input type="button" value="-" onclick="calc('-')">
+    <input type="button" value="*" onclick="calc('*')">
+    <input type="button" value="/" onclick="calc('/')">
+    
+    <p><label for="sp1">첫번째 값</label><span id="sp1"></span></p>
+    <p><label for="sp2">두번째 값</label><span id="sp2"></span></p>
+    <p><label for="sp3">결과 값</label><span id="sp3"></span></p>
+  </form>
+</body>
+</html>

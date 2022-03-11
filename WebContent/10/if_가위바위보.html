@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+play = function(){
+	let a = prompt("첫번째 사람 입력", "가위바위보");
+	let b = prompt("두번째 사람 입력", "가위바위보");
+	let c;
+	
+	if(a==b){
+		c = "비겼군요";
+	}else if(a=="가위" && b=="보" ||
+			 a=="바위" && b=="가위" ||
+			 a=="보" && b=="바위"){
+		c = "첫사람 승리";
+	}else{
+		c = "두번째 사람의 승리";
+	}
+// 	let str = "첫번째 사람 : '" + a + "' <br>";
+// 		str += "두번째 사람 : " + b + "<br>";
+// 		str += "결과 : " + c;
+
+//	ES6 백틱(backtick / grave accent)
+//	문자열과 변수의 값을 하나의 문자열 안에 기술할 수 있는 기술
+// 	`문자는 그대로 작성하고 변수는 ${} 기호안에 기술한다`
+	let str = `첫번째 사람 : '${a}' <br>`;
+		str += `두번째 사람 : ${b} <br>`;
+		str += `결과 : ${c}`;
+	
+	document.getElementsByTagName('div')[0].innerHTML = str;
+}
+</script>
+</head>
+<body>
+  <input type="button" value="가위바위보" onclick="play()">
+  <div></div>
+</body>
+</html>
