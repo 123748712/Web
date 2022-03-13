@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<style>
+div {
+  display: list-item;
+  list-style-position: inside;
+/*   border: 1px solid blue; */
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+  <pre>
+  	indexOf(value, start)
+  	: value - 찾을 문자열(필수)
+  	: start - 검색을 시작할 index지정 (선택/미입력시 처음부터 검색한다)
+  	
+  	lastIndexOf(value, end)
+  	: value - 찾을 문자열(필수)
+  	: end - 검색을 끝낼 index지정 (선택/미입력시 끝까지 검색한다)
+  	
+  	- 대소문자를 구분한다
+  	- 찾는 문자열이 없을 경우 -1을 반환한다
+  </pre>
+  <p>["홍길동","고길동","둘리","도우너","또치","희동이","고길동","철수","영희","김은대"]</p>
+  <input type="button" value="indexOf" onclick="proc1('도우너')">
+  <input type="button" value="lastIndexOf" onclick="proc2('고길동')">
+  <input type="button" value="indexOf" onclick="proc3('고길동')">
+  <input type="button" value="indexOf" onclick="proc4()">
+  
+  <div id="d1"></div>
+  <div id="d2"></div>
+  <div id="d3"></div>
+  <div id="d4"></div>
+  <script>
+  let arr = ["홍길동","고길동","둘리","도우너","또치","희동이","고길동","철수","영희","김은대"];
+  
+  function proc1(name){
+	  let idx = arr.indexOf(name);
+	  //출력정보 입력
+	  let str = `indexOf() 메소드로 찾은 이름 ${name}은 `;
+	  	  str += `${idx}번째에 있네요~~`;
+	  document.getElementById('d1').innerHTML = str;
+  }
+  
+  function proc2(nm){
+	  let idx = arr.lastIndexOf(nm,5);//검색을 끝낼 index지정
+	  //출력정보 입력
+	  let str = `lastIndexOf() 메소드로 찾은 이름 ${nm}은 `;
+	  	  str += `${idx}번째에 있네요~~`;
+	  document.getElementById('d2').innerHTML = str;
+  }
+  function proc3(a){
+	  let idx = 0;
+	  let str_idx = "";
+	  
+	  while(true){
+		  idx = arr.indexOf(a,idx);
+		  if(idx == -1) break;
+		  str_idx += ` ${idx}번째 `;
+		  idx++; //반환받은 index이후 값을 찾기위해 증가시키고 indexOf메소드 두번째인자로 활용
+	  }
+	  //출력정보 입력
+	  let str = `찾는 이름 ${a}는`;
+	  	  str += `${str_idx}에 있죠~`;
+	  document.getElementById('d3').innerHTML = str;
+  }
+  let proc4=function(){
+	  let nm = prompt('이름을 입력해봐요');
+	  let idx = arr.indexOf(nm);
+	  
+	  let str = "";
+	  if(idx == -1){
+		  str = `찾는 이름이 없네요`;
+	  }else{
+		  str += `${nm}님은 ${idx}번째에 있어요~!`;
+		  str += `<a href="detail.jsp?name=${nm}">상세보기</a>`;
+	  }
+	  document.getElementById('d4').innerHTML = str;
+  }
+  </script>
+</body>
+</html>
