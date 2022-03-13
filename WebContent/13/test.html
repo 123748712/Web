@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	let aaa=function(){
+		let arr = new Array();
+		while (true) {
+			let name = prompt("이름입력);
+			if (name == "" || name == null) break;
+			arr.push(name);
+		}
+		document.getElementsByTagName('div')[0].textContent = arr;
+	}
+</script>
+</head>
+<body>
+	<h4>사람 이름을 계속 입력 받아 배열에 저장하고 출력하는 프로그램을 작성 </h4>
+	<input type="button" value="입력" onclick="aaa()">
+	<div></div>
+</body>
+</html>

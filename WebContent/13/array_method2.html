@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <script>
+    let arr = ["고길동","둘리","도우너","또치","희동이"];
+	
+    //push() : 배열 끝에 요소 추가
+    //unshift(): 배열 시작에 요소 추가
+    function proc1(){
+	  let a = prompt("아무거나 입력하셈요");
+	  //arr.push(a,"졸리다","집으로","가고싶당..ㅎ");		//뒤에 추가
+	  arr.unshift(a,"b","c","D");	//앞에 추가
+	  document.getElementById("d1").innerHTML = arr;
+    }
+  	//pop() : 배열 끝의 요소 제거 후 반환
+    //shift(): 배열 시작의 요소 제거 후 반환
+    function proc2(){
+	  //let str = `삭제 전 pop() : ${arr} <br>`;
+	  let str = `삭제 전 shift() : ${arr} <br>`;
+	  
+// 	  let item = arr.pop();
+// 	  	  str += `삭제 후 pop() : ${arr} , 삭제된 항목 : ${item}`;
+   	  let item = arr.shift();
+	  	  str += `삭제 후 shift() : ${arr} , 삭제된 항목 : ${item}`;
+    	
+	  document.getElementById("d2").innerHTML = str;
+    }
+    //reverse() : 배열을 거꾸로 배치
+    function proc3(){
+    	arr.reverse();
+    	let str = `reverse(): ${arr}`;
+    	document.getElementById('d3').textContent = str;
+    }
+    //sort() : 정렬(default 사전순정렬)
+    function proc4(){
+    	//사전순 정렬
+    	arr.sort();
+    	let str = `sort() : ${arr} <br>`;
+    	
+    	let num = [12,100,230,32,300,24,512];
+    	//사전순 정렬
+    	num.sort();
+    		str += `사전순 정렬 : ${num} <br>`;
+    	//크기순 정렬
+    	num.sort(function(a,b){
+    		//return a-b;	//반환 값이 양수일때 자리를 변경하는 방식으로 오름차순 정렬한다
+    		return b-a;	//반환 값이 양수일때 자리를 변경하는 방식으로 내림차순 정렬한다
+    	});
+    		str += `크기순 정렬 : ${num}`
+    	document.getElementById('d4').innerHTML = str;
+    }
+    //slice(str, end-1) : str ~ end-1까지의 영역을 잘라 새로운 배열을 만듦 
+    function proc5(){
+    	let a = prompt("arr변수에 입력된 값 중 하나를 입력해봐요");
+    	let index = arr.indexOf(a);
+    	let array = arr.slice(index, arr.length);
+    	
+    	let str = `입력값 위치 : ${index} <br>`;
+    		str += `새로운 배열 : ${array}`;
+    	document.getElementById('d5').innerHTML = str;
+    }
+    //splice(idx,n,a,b,c,...) : index위치에서 n개 삭제 후 a,b,c,...요소 삽입
+    function proc6(){
+    	arr.splice(1,0,"영희","철수");
+    	let str = `결과 : ${arr}`;
+    	document.getElementById('d6').textContent = str;
+    }
+    //concat() : 여러 배열 합치기
+    function proc7(){
+    	let arr1 = ["포도","딸기","체리"];
+    	let arr2 = [1,4,76];
+    	let arr3 = [true,false];
+    	let newArr = arr1.concat(arr2,arr3);
+    	let str = `concat() : ${newArr} <br>`;
+    		str += `arr3[1] & newArr[7] : ${newArr[7]}, ${arr3[1]}`;
+		document.getElementById('d7').innerHTML = str;    	
+    }
+    //join() : 배열을 문자열로 합치기 - 인자로 구분자를 지정할 수 있음
+    function proc8(){
+    	let arr1 = ["포도","딸기","체리","수박","귤"];
+    	let join = arr1.join('-');
+    	let str = `join() : ${join} <br>`;
+    		str += `join 7번째 : ${join[7]}`;
+    	document.getElementById('d8').innerHTML = str;
+    }
+  </script>
+  <h4>["고길동","둘리","도우너","또치","희동이"]</h4>
+  <input type="button" value="push(unshift)" onclick="proc1()">
+  <div id="d1"></div>
+  <input type="button" value="pop(shift)" onclick="proc2()">
+  <div id="d2"></div>
+  <input type="button" value="reverse" onclick="proc3()">
+  <div id="d3"></div>
+  <input type="button" value="sort" onclick="proc4()">
+  <div id="d4"></div>
+  <input type="button" value="slice" onclick="proc5()">
+  <div id="d5"></div>
+  <input type="button" value="splice" onclick="proc6()">
+  <div id="d6"></div>
+  <input type="button" value="concat" onclick="proc7()">
+  <div id="d7"></div>
+  <input type="button" value="join" onclick="proc8()">
+  <div id="d8"></div>
+</body>
+</html>

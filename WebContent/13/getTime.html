@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <h4>getTime() : 경과시간 구하기 - 반환 값은 milliseconds </h4>
+  <input type="button" value="확인" onclick="proc1()">
+  <div></div>
+  
+  <h4>수료일까지 남은 기간 구하기</h4>
+  <input type="button" value="확인" onclick="proc2()">
+  <div></div>
+  
+  <h4>환불 가능일 구하기 - 7일 이후 반품 불가 조건</h4>
+  <input type="date" id="refund">
+  <input type="button" value="확인" onclick="proc3()">
+  
+  <script>
+  let now = new Date();
+  function proc3(){
+	  //달력으로 선택한 날짜 값 가져오기 - input요소의 값 가져오기 value
+	  let rf = document.getElementById('refund').value;
+	  //console.log(rf);
+	  let refday = new Date(rf);
+	  let tday = now.getTime();
+	  let rfday = refday.getTime();
+	  let time = tday - rfday; //ms
+	  let dd = time/1000/60/60/24;
+	  if(dd >= 7){
+		  alert("교환/환불 기간이 지났습니다");
+	  }else{
+		  alert("교환/환불이 가능합니다");
+	  }
+  }
+  function proc2(){
+	  let eday = new Date("2022.07.15");
+	  let tday = now.getTime();
+	  let endday = eday.getTime();
+	  let time = endday - tday;	//이후의 날 (기준일 - 현재)
+	  let dd = time/1000/60/60/24;
+	  let str = `수료일 : ${eday.toLocaleDateString()} <br>`;
+	  	  str += `오늘 : ${now.toLocaleDateString()} <br>`;
+	  	  str += `D-${dd.toFixed(1)}일 <br>`;
+	  	  str += `D-${Math.ceil(dd)}일 <br>`; //올림
+	  	  str += `D-${Math.round(dd)}일 <br>`;//반올림
+	  	  str += `D-${Math.floor(dd)}일`;	 //내림
+	  document.getElementsByTagName('div')[1].innerHTML = str;
+  }
+  function proc1(){
+	  
+	  let bir = new Date("2018.11.12");
+	  
+	  //태어난 날로부터 경과시간 구하기
+	  let today = now.getTime();
+	  let birthday = bir.getTime();
+	  //today - birthday = 내가 살아온 시간 (ms)
+	  //console.log(today - birthday);
+	  let time = today - birthday;	//지나온 날 (현재 - 기준일)
+	  let sec = time/1000;
+	  let min = sec/60;
+	  let hh = min/60;
+	  let dd = hh/24;
+	  let yy = dd/365;
+	  
+	  //출력영역에 출력하기 
+	  let str = `생년월일 : ${bir.toLocaleDateString()} <br>`;
+	  	  str += `오늘 날짜 : ${now.toLocaleDateString()} <br>`;
+	  	  str += `태어난지 ${yy.toFixed(2)}년 경과 <br>`;
+	  	  str += `태어난지 ${dd.toFixed(1)}일 경과 <br>`;
+	  	  str += `태어난지 ${hh.toFixed()}시 경과 <br>`;
+	  	  str += `태어난지 ${min.toFixed()}분 경과 <br>`;
+	  	  str += `태어난지 ${sec.toFixed()}초 경과 <br>`;
+	  document.getElementsByTagName('div')[0].innerHTML = str;
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  	  
+	  
+  }
+  </script>
+</body>
+</html>

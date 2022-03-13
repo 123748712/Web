@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <h4>요일구하기</h4>
+  <input type="button" value="요일" onclick="proc1()">
+  <div id="d1"></div>
+  
+  <input type="button" value="요일(배열)" onclick="proc2()">
+  <div id="d2"></div>
+  
+  <script>
+  let today = new Date();
+  //alert(today.getDay());
+  
+  function proc2(){
+	  let days = ["일","월","화","수","목","금","토"];
+	  let day = today.getDay();
+	  document.getElementById('d2').textContent
+	  = `today is : ${today.toLocaleDateString()} ${days[day]}요일`;
+  }
+  
+  function proc1(){
+	  
+	  let str = `오늘날짜 : ${today.toLocaleDateString()} `;
+	  let day = today.getDay();
+	  switch(day){
+	  case 0 :
+		  str += `일요일`;
+		  break;
+	  case 1 :
+		  str += `월요일`;
+		  break;
+	  case 2 :
+		  str += `화요일`;
+		  break;
+	  case 3 :
+		  str += `수요일`;
+		  break;
+	  case 4 :
+		  str += `목요일`;
+		  break;
+	  case 5 :
+		  str += `금요일`;
+		  break;
+	  case 6 :
+		  str += `토요일`;
+		  break;
+	  }
+	  document.getElementById('d1').textContent = str;
+  }
+  
+  
+  
+  
+  </script>
+</body>
+</html>
