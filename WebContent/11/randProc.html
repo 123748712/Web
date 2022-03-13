@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  width: 100px;
+  height: 200px;
+  border: 1px solid red;
+  background-color: yellow;
+  
+  /* 세로속성존재시 사용가능 */
+  overflow: auto;
+}
+</style>
+<script>
+randProc = function(){
+	//console.log( parseInt(Math.random()*10) );
+	
+	let arr = new Array();
+	for(i=0;i<5;i++){
+		arr[i] = parseInt(Math.random()*10);
+	}
+	document.getElementsByTagName('div')[0].innerHTML
+			+= arr + "<br>";
+}
+</script>
+</head>
+<body>
+  <h4>랜덤수 5개 출력하기</h4>
+  <input type="button" value="random" onclick="randProc()">
+  <div></div>
+</body>
+</html>

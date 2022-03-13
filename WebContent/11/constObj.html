@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+function Car(model, speed, color){
+	this.model=model;
+	this.speed=speed;
+	this.color=color;
+	this.brake=function(){
+		this.speed -= 10;
+	}
+	this.accel=function(){
+		this.speed += 10;
+	}
+}
+myCar = new Car("530d",50,"red", );
+document.write(`모델: ${myCar.model} 속도: ${myCar.speed} <br>`);
+myCar.accel();
+document.write(`모델: ${myCar.model} 속도: ${myCar.speed} <br>`);
+myCar.brake();
+document.write(`모델: ${myCar.model} 속도: ${myCar.speed} <br>`);
+
+myCar.turbo = true;
+myCar.showModel=function(){
+	alert(`모델은 ${this.model}입니다`);
+	return `모델은 ${this.model}입니다`;
+}
+document.write(`모델: ${myCar.model} 터보: ${myCar.turbo} <br>`);
+document.write(`모델명: ${myCar.showModel()}`);
+</script>
+</body>
+</html>
