@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+pre {
+  column-count: 2;
+}
+ul {
+  border: 1px dashed orange;
+  margin: 0px 20px;
+}
+li {
+  border: 1px dashed orange;
+}
+</style>
+</head>
+<body>
+	<span>노드밸류</span>
+	<pre>
+	
+		&lt;ul id ="myList">
+			%lt;li id="li1">Coffee&lt;/li>
+			%lt;li id="li2">Tea&lt;/li>	
+		&lt;/ul>
+
+
+
+		<ul id="myList"><!-- 주석 -->
+			<li id="li1">Coffee</li>
+			<li id="li2">Tea</li>
+		</ul>
+	</pre>
+	<script>
+	   document.write("parentElement : " + document.getElementById('li1')
+	    		.parentElement.nodeName + "<br>");
+	    
+	    document.write("children : " + document.getElementById('myList')
+	    		.children[0].tagName + "<br>");
+	    
+	    //text는 element로 취급하지 않으므로 검색대상 아님
+	  	document.write("first(last)ElementChild : " + document
+	  		.getElementById('myList').firstElementChild.nodeName + "<br>");
+	  	
+	  	document.write("next(previous)ElementSibling : "
+	//   + document.getElementById('li1').nextElementSibling.innerText + "<br>");
+	  	+ document.getElementById('li2')
+	  		.previousElementSibling.innerText + "<br><br><br>");
+	    
+	    //Node관련 속성
+	  	document.write("parentNode : " + document.getElementById('li1')
+	    		.parentNode.nodeName + "<br>");
+	    
+	  	document.write("childNodes : " + document.getElementById('myList')
+	    		.childNodes[1].nodeName + "<br>");
+	  	
+	  	
+	  	
+	    // 노드는 요소(element)의 상위 개념
+	    // 여러 형태의 노드로 구성
+	    // 자주 쓰이는 노드 종류
+	    // - 문서노드(document Node) 트리의 최상위로서 하위요소 접근시 문서노드를 통해야 함
+	    // - 요소노드(Element Node) 태그들
+	    // - 텍스트노드(Text Node) 태그 내 텍스트로 요소 노드의 자식이자 돔트리 최종단
+	    
+	  	document.write("first(last)Child : " + document
+	  			//node관련 대상은 inner~로 확인불가............. 이어서 
+	  			.getElementById('myList').firstChild.textContent + "<br>");
+//	   		.getElementById('myList').lastChild.innerHTML + "<br>");
+
+	</script>
+</body>
+</html>

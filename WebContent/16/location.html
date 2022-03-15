@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	let url = document.createElement("a"); // DOM 메소드
+	url.href = "https://developer.mozilla.org:8080/en-US/search?q=URL#search-results-close-container";
+	
+	document.write(`hash : ${url.hash} <br>`);
+	document.write(`host : ${url.host} <br>`);
+	document.write(`hostname : ${url.hostname} <br>`);
+	document.write(`href : ${url.href} <br>`);
+	document.write(`port : ${url.port} <br>`);
+	document.write(`pathname : ${url.pathname} <br>`);
+	document.write(`protocol : ${url.protocol} <br>`);
+	document.write(`search : ${url.search} <br>`);
+	
+	  	//페이지 이동
+		function proc(){
+//        location.href = "test.jsp?name=홍길동";
+      	 location.assign("test.jsp?name=홍길순");
+   		}
+
+	  	// 새문서로 대체하며 이전 문서로 돌아갈 수 없음
+		function replace() {
+// 			location.replae("test.jsp?name=홍홍순")
+			location.replace(url);
+		}
+	  	
+	  	function reload() {
+			// 랜덤 문자 발생
+			let str = ["HTML", "CSS", "JAVA", "JavaScript", "jQuery"];
+			let idx = parseInt(Math.random()*str.length);
+			let rst = `<h4> ${str[idx]} </h4>`;
+			let d = document.getElementById('d1');
+			d.innerHTML = rst;
+			d.style.color = "purple";
+			d.style.fontSize = "1.5em";
+			
+			// 1초 뒤 현재의 문서 다시 불러옴
+			setTimeout(function() {
+				location.reload();
+			},1000);
+		}
+	</script>
+	
+	<span>페이지 이동하기 - location.href</span>
+	<input type="button" value="이동" onclick="proc()"> <br><br>
+	
+	<span>현재 문서를 새문서로 대체 - location.replace</span> <br>
+<!-- 	<input type="button" value="다시못옴" onclick="replace()"> -->
+	<a href="javascript:replace('test.jsp?name=이동');">test.jsp로 이동</a> <br><br>
+	
+	<span>문서 다시 불러오기 - location.reload</span>
+	<input type="button" value="불러옴" onclick="reload()"> <br><br>
+	<div id="d1">현재문서</div>
+</body>
+</html>

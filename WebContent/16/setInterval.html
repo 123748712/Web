@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4>setInterval(fn,ms) : ms에 지정된 시간 경과될 때 마다 함수 실행</h4>
+	<input type="button" value="setInterval" onclick="interval(this)">
+	<input type="button" value="clearInterval" onclick="clr()">
+<!-- 	<div></div> -->
+	<script>
+	let a = "";
+	let b = "";
+	function interval(btn) {
+// 		btn.style.display = "none";
+		btn.setSttribyte('disabled',true);
+		b = btn;
+		a = setInterval(function() {
+		// 10진수 색상 생성
+		let cr = parseInt(Math.random()*256);
+		let cg = parseInt(Math.random()*256);
+		let cb = parseInt(Math.random()*256);
+		
+		cr = cr.toString(16);
+		cg = cr.toString(16);
+		cb = cr.toString(16);
+		
+// 		document.getElementsByTagName('h4')[0].style.background=`rgb(${cr}, ${cg}, ${cb})`; // 10진수
+		document.getElementsByTagName('h4')[0].style.background=`#${cr}${cg}${cb}`; // 16진수
+		},1000);
+		console.log(a);
+	}
+	function clr() {
+		clearInterval(a);
+// 		b.style.display = "inline";
+// 		b.setAtrribute('enabled', true); // 안됨
+// 		b.removeAttribute('diabled');
+	}
+	</script>
+</body>
+</html>
