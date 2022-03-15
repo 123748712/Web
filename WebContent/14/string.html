@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+// charAt(idx) : index번쩨 문자 반환
+// charCodeAt(idx) : index번째 문자의 아스키코드 반환(A => 65, a => 97, 0 =>48)
+let str = "우리나라 좋은나라 대한민국 만세~~ 독도는 우리땅~~ ABCabc0123";
+let proc1 = function() {
+	let rst = `charAt(5) : ${str.charAt(5)} <br>`;
+		rst += `charCodeAt(29) : ${str.charCodeAt(29)}<br>`;
+	document.getElementById('d1').innerHTML = rst;
+}
+// indexOf(문자, 시작범위idx), lastIndexOf(문자, 종료범위idx)
+let proc2 = function() {
+	let rst = `indexOf("우리",4) : ${str.indexOf("우리",4)} <br>`;
+		rst += `lastIndexOf("나라", 6) : ${str.lastIndexOf("나라")} <br>`;
+		rst = `indexOf("뷁") : ${str.indexOf("뷁")} <br>`;
+	document.getElementById('d2').innerHTML = rst;
+}
+// trim() : 문장 앞뒤 공백 제거 (문장 안쪽 고백은 제거하지 않음)
+let proc3 = function() {
+	let tVal = document.getElementById('txt').value;
+	let rst = `공백 제거 전 : ${tVal.length} <br>`;
+	tVal = tVal.trim();
+	rst += `공백 제거후 : ${tVal.length} <br>`;
+	document.getElementById('d3').innerHTML = rst;
+	
+	if(tVal.length < 1){
+		alert("데이터 입력해줘");
+		return false;
+		
+	}
+	document.getElementById('d3').innetHTML = rst;
+}
+// str~end 사이 문자열 잘라내기 - end는 포함되지 않음
+// substring(str, end - 1)
+// slice(str, end)
+// substr(str, length)
+function proc4(){
+   let start = str.indexOf("독"); //20번째 인덱스 반환
+   let end = start + "독도는 우리땅".length; // 20 + 7 = 27
+   
+   //출력
+   let rst = `substring(str,end) : ${str.substring(start,end)} <br>`;
+      rst += `slice(str,end) : ${str.slice(start,end)} <br>`;
+      rst += `substr(str,length) : ${str.substr(start,"독도는 우리땅".length)}`;
+   document.getElementById('d4').innerHTML = rst;
+}
+//split(구분자, 구분갯수) : 구분자를 기준으로 문자열을 분리하여 배열로 반환
+let proc5 = function(){
+   let arr = str.split(" ");
+   console.log(arr);
+   let rst = `문자열 갯수 : ${str.length}, 문자열(str[2]번째) : ${str[2]} <br>`;
+      rst += `배열 갯수 : ${arr.length},  배열(arr[2]번째) : ${arr[2]}`;
+   document.getElementById('d5').innerHTML = rst;
+}
+// replace(찾을 문자열, 변경할 문자열) : 문자열을 찾아 변경할 문자열로 대체
+function proc6() {
+	let taVal = document.getElementsByTagName('textarea')[0].value;
+	// replace() 메소드에서 사용한 //g 기호 : 대상이 되는 문자열 내 모든 패턴을 체크함
+	taVal = taVal.replace(/\r/g, "").replace(/\n/g, "<br>");
+	document.getElementById('d6').innerHTML = taVal;
+}
+// div내용 가져오기
+function proc7() {
+	let dVal = document.getElementById('d7').innerText;
+	dVal = dVal.replace(/<br>/g, "\r\n");
+	document.getElementsByTagName('textarea')[1].value = dVal;
+}
+let str1 = "문자열1";
+let str2 = "문자열2";
+// console.log(str1 + str2);
+</script>
+</head>
+<body>
+	<h4>우리나라 좋은나라 대한민국 만세~~ 독도는 우리땅~~ABCabc0123</h4>
+	<input type="button" value="charAt" onclick="proc1()">
+	<div id="d1"></div>
+	<br>
+
+	<input type="button" value="indexOf" onclick="proc2()">
+	<div id="d2"></div>
+	<br>
+
+	<input id="txt">
+	<input type="button" value="trim" onclick="proc3()">
+	<div id="d3"></div>
+	<br>
+
+	<input type="button" value="substring" onclick="proc4()">
+	<div id="d4"></div>
+	<br>
+
+	<input type="button" value="split" onclick="proc5()">
+	<div id="d5"></div>
+	<br>
+	
+	<textarea rows="5" cols="40"></textarea>
+	<input type="button" value="replace" onclick="proc6()">
+	<div id="d6"></div>
+	<br>
+	
+	<div id="d7">
+	화요일<br>
+	2교시<br>
+	</div>
+	<textarea rows="5" cols="40"></textarea>
+	<input type="button" value="replace" onclick="proc7()">
+	<div id="d7"></div>
+	<br>
+
+</body>
+</html>

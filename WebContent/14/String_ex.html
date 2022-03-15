@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<pre>
+		주민등록번호를 입력받아 생년월일과 성별을 출력
+		ex) 110325-4432590
+		생일 : 2011년 3월 25일
+		성별 : 여자
+		나이 : 11살
+	</pre>
+	<input type="button" value="정보 출력" onclick="proc1()">
+	<div id="d1"></div>
+	
+	<pre>
+		주민등록번호를 입력 받아 주민등록번호의 유효성을 검사하는 프로그램을 작성하시오.(ABCDEF-GHIJKLM)
+		1. A*2 + B*3 + ... + H*9 + I*2 + ... + L*5 의 총합을 구한다.
+		2. 1번의 합을 11로 나눈 나머지를 구한다.
+		3. 11에서 2번의 결과를 뺀다.
+		4. 3번의 결과가 0~9이면 값 그대로, 10이면 0, 11이면 1로 변환
+		5. 4번의 결과와 M자리의 값이 같으면 맞는 번호이다.
+	</pre>
+	<input type="button" value="정보 출력" onclick="proc2()">
+	<div id="d2"></div>
+	<script>
+	function proc1() {
+		let a = prompt("주민번호입력","110325-4432590");
+		// 자료추출(idx - 년 0,1 / 월 2,3 / 일 4,5 / 성별 7)
+		let a1 = a.substring(0,2); // a,slice(0,2), a.substr(0,2)
+		let a2 = a.substring(2,4); // a.slice(2,4), a.substr(2,2)
+		let a3 = a.substring(4,6); // a.slice(4,6), a.substr(4,2)
+		let a4 = a.substring(7,8); // a.slice(7,8), a.substr(7,1), a.charAt(7)
+	// 출생년도
+	if(a4 == "1" || a4 == "2") yy = "19";
+	else if(a4 == "3" || a4 == "4") yy = "20";
+	
+	// 성별
+	let gender = "";
+	if(a4 == "1" || a4 == "3") gender = "남자";
+	else if(a4 == "2" || a4 == "4") gender = "여자";
+	
+	// 생일
+	let bir = yy.concat(a1) + "년" + a2 + "월" + a3 + "일";
+	
+	// 나이
+	let now = new Date();
+	let year = now.getFullYear(); // 4자리년도
+	let age = year - yy.concat(a1);
+	
+	// 출력
+	let rst = `주민등록번호 : ${a.substring(0,8)}****** <br>`;
+		rst += `생년월일 : ${bir} <br>`;
+		rst += `나이 : ${age} 살 <br>`;
+		rst += `성별 : ${gender}`;
+		document.getElementById('d1').innerHTML = rst;
+	}
+	
+	function proc2() {
+		let a = prompt("주민동록번호입력", "110325-4432590");
+		let idNum = a.replace("-","");
+		
+// 		1. A*2 + B*3 + ... + H*9 + I*2 + ... + L*5 의 총합을 구한다.
+		let hap = 0;
+// 		let num = "234567892345";
+		for(let i=0; i<idNum.length-1; i++){
+			if(idNum.charAt(i) == '0') continue;
+			// 방식 1
+			hap += idNum.charAt(i)*(i%8+2); // i%8+2 => (0%8+2=2, 1%8+2=3, 2%8+2=4, ... 8%8+2=2, 9%8+2=3, ...)
+			// 방식 2
+// 			idNum.charAt(i)*num[i];
+		}
+// 		2. 1번의 합을 11로 나눈 나머지를 구한다.
+// 		3. 11에서 2번의 결과를 뺀다.
+		let b = 11-(hap%11);
+
+// 		4. 3번의 결과가 0~9이면 값 그대로, 10이면 0, 11이면 1로 변환
+		b = b%10;
+		
+// 		5. 4번의 결과와 M자리의 값이 같으면 맞는 번호이다.
+		let last = a.charAt(idNum.length);
+		let rst = "";
+		if(b == last) rst += `유효합니다.`;
+		else rst += `유효하지 않습니다.`;
+		
+		// 출력
+		let result = `입력하신 ${a.substring(0,8)}****** 가<br>`;
+			result += `${rst}`;
+		document.getElementById('d2').innerHTML = result;
+	}
+	</script>
+</body>
+</html>
