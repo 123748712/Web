@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4>1 ~ 100 사이 숫자 추측하기</h4>
+	<input id="number">
+	<button type="button" onclick="guess()">추측</button>
+	<p id="message"></p>
+	<script>
+		const rnd = Math.floor(Math.random()*100+1);
+		let cnt = 0;
+		let str = "";
+		
+	function guess() {
+		// 랜덤값 생성
+		
+		let hint = "";
+		let numVal = document.getElementById('number').value;
+		str += numVal + " ";
+		
+		// 공백문자 처리
+		if(numVal.trim() == "") return;
+		
+		if(numVal == rnd) {
+			cnt++;
+			// 정답출력
+			let rst = `랜덤 값 : ${rnd}<br>`;
+				rst += `총 횟수 ${cnt} <br>`;
+				rst += `입력한 값들 : ${str}`;
+			document.getElementById('message').innerHTML = rst;
+		} else if(numVal < rnd) {
+			cnt++;
+			hint += `더 큰 수를 입력하세요.`;
+			document.getElementById('message').textContent = hint;
+		} else if(numVal > rnd) {
+			cnt++;
+			hint += `더 작은 수를 입력하세요.`;
+			document.getElementById('message').textContent = hint;
+		}
+		
+		
+	}
+	</script>
+</body>
+</html>

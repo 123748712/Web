@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="button" value="네이버" onclick="naverOpen()">
+	<input type="button" value="다음" onclick="daumOpen()">
+
+	<h4>새 창(자식창)을 열고 이름을 입력하면 현재창(부모창)에 이름이 출력</h4>
+	<input type="button" value="확인" onclick="proc()">
+	<div></div>
+	<script>
+	function proc() {
+		window.open("winsub.html", "", "width = 400 height = 400");
+	}
+	
+	function naverOpen() {
+		window.open("http://www.naver.com", "naver", "width=500 height = 400 top=100 left=100");
+	}
+	function daumOpen() {
+		window.open("http://www.daum.net", "naver", "width=500 height = 400 top=100 left=100");
+	}
+	</script>
+</body>
+</html>
