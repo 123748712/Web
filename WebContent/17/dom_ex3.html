@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4>요소 추가하고 삭제하기</h4>
+	<button type="button" onclick="add()">추가</button>
+	<button type="button" onclick="remove()">삭제</button>
+	<div id="d1"></div>
+	<button type="button" onclick="addRemove()">추가/삭제</button>
+	<div id="d2"></div>
+	
+	<script>
+	let str = ["봄", "여름", "가을", "겨울", "spring", "summer", "autumn", "winter"];
+	
+	function add() {
+		let rnd = Math.floor(Math.random()*str.length);
+		let txt = document.createTextNode(str[rnd]);
+		// 생성된 텍스트노드를 삽입할 공간 생성하기
+		
+		let pTag = document.createElement('p');
+		pTag.appendChild(txt);
+		document.getElementById('d1').appendChild(pTag);
+	}
+	function remove() {
+		// (부모).removeChild(자식)
+		let parent = document.getElementById('d1');
+		// 삭제 대상 찾기
+		let child = parent.firstChild;
+// 		let child = parent.firstChild;
+		parent.removeChild(child);
+	}
+	function addRemove() {
+		let rnd = Math.floor(Math.random()*str.length);
+		let txt = document.createTextNode(str[rnd]);
+		// 각 text node에 삭제버튼 생성
+		let btn = document.createElement('input');
+		btn.type = "button";
+		btn.value = "삭제";
+		btn.onclick = function() {
+			// 삭제 대상 찾기
+// 			alert(this.parentNode.remove());
+			this.parentNode.remove();
+		}
+		
+		let pTag = document.createElement('p');
+		pTag.appendChild(txt);
+		pTag.appendChild(btn);
+		document.getElementById('d2').appendChild(pTag);
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  width: 100px;
+  height: 100px;
+  background: yellow;
+}
+
+
+</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<script>
+	let d1 = document.getElementById('d1');
+	
+// 	// onclick
+// 	d1.onclick = function() {
+// 		alert("111");
+// 	}
+// 	d1.onclick = function() {
+// 		alert("222");
+// 	}
+
+	// addEventListener - 이벤트 큐에 순서대로 담음
+	d1.addEventListener("click", function() {
+		alert("333");
+	});
+	d1.addEventListener("click", function() {
+		alert("444");
+	});
+	</script>
+</body>
+</html>

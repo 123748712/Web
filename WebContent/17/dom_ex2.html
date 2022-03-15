@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4>버튼 클릭했을 때 이미지 추가하기</h4>
+	<div>
+		<ul>
+			<li>aa.gif</li>
+			<li>다운로드.gif</li>
+			<li>뚱이.gif</li>
+		</ul>
+	</div>
+	<input type="button" value="확인" onclick="proc1()">
+
+
+
+	<h4>리스트 항목 클릭했을 때 이미지 추가하기</h4>
+	<div>
+		<ul>
+			<li onclick="proc2(this)">aa.gif</li>
+			<li onclick="proc2(this)">다운로드.gif</li>
+			<li onclick="proc2(this)">뚱이.gif</li>
+		</ul>
+	</div>	
+	
+		<h4>이벤트 한번에 설정하기 - addEventListener('event명', fn)</h4>
+	<div>
+		<ul>
+			<li class = "add">aa.gif</li>
+			<li class = "add">다운로드.gif</li>
+			<li class = "add">뚱이.gif</li>
+		</ul>
+	</div>
+
+	<script>
+		function proc1() {
+			//ul - li요소에 접근하여 이미지정보 얻어오기
+			let list = document.getElementsByTagName('ul')[0];
+			let li = list.getElementsByTagName('li');
+
+			//반복해서 li가 가진 정보 가져오기
+			for (let i = 0; i < li.length; i++) {
+				let vsrc = li[i].firstChild.data; //textContent, nodeValue... 
+
+				//요소 생성 - img
+				let vimg = document.createElement('img');
+				vimg.src = "../image/" + vsrc;
+				vimg.style.width = "100px";
+				vimg.height = 100;
+				document.getElementsByTagName('div')[0].appendChild(vimg);//div의 첫번째 영역[0] 에서 가장 끝에쪽(append)에 붙음
+			}
+		}
+		
+		function proc2(aaa){
+			let vsrc = aaa.firstChild.data;
+			
+			//요소 생성 - img
+			let vimg = document.createElement('img');
+			vimg.src = "../image/" + vsrc;
+			vimg.style.width = "50px";
+			vimg.height = 50;
+			aaa.appendChild(vimg);//text다음 항목에 위치
+		}
+
+		let liTags = document.getElementsByClassName('add');
+		for(let i=0; i <liTags.length; i++){
+			liTags[i].addEventListener('click', addImages);
+		}
+		function addImages() {
+			//console.log(this);
+			let vsrc = this.firstChild.data;	
+			//요소 생성 - img
+			let vimg = document.createElement('img');
+			vimg.src = "../image/" + vsrc;
+			vimg.style.width = "50px";
+			vimg.height = 50;
+			this.insertBefore(vimg,this.childNodes[0]);
+		}
+	</script>
+
+
+
+
+</body>
+</html>

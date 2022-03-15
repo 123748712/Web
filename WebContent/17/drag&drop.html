@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  border: 1px solid black;
+  width: 300px;
+  height: 300px;
+}
+img {
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+	<div ondrop="drop()" ondragover="allowDrop()">이미지 옮겨 올 영역</div>
+	<img id="image" alt="a" src="../image/다운로드.gif" draggable="true" ondragstart="drag()">
+	
+	<script>
+	function drag() {
+		// target대상에 id속성이 꼭 존재해야 함
+		event.dataTransfer.setData("tg",event.target.id);
+	}
+	function drop() {
+		let data = event.dataTransfer.getData("tg");
+		let img = document.getElementById(data);
+		event.target.appendChild(img); // 타겟 위치에 추가
+	}
+	function allowDrop() {
+		event.preventDefault(); // 기본이벤트 중지
+	}
+	</script>
+</body>
+</html>
