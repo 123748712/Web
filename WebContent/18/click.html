@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+ border: 1px solid black;
+}
+button {
+  display : none;
+}
+</style>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+$(function() {
+	// jquery의 on('event') = javascript의 ㅁddEventListener로 이벤트를 주는 것과 동일
+	$('#jq h4').on('click', function() {
+// 		console.log(this);
+		$(this).hide();
+		// 모든 요소가 숨겨졌을때 버튼 보이기
+// 			console.log($('#jq h4:visible'));
+		if($('#jq h4:visible').length < 1){
+			$('#jq button').show();
+		}
+	});
+
+	// 보이기 버튼 click
+	$('#jq button').on('click', function(){
+		$('#jq h4').show();
+		$(this).hide();
+	});
+});
+</script>
+<script>
+function proc(t) {
+// 	console.log(t);
+// 	t.style.display = "none";
+	// jquery code
+// 	t.hide(); // t => DOM객체(=javascript객체)로서 jquery메소드 사용 불가
+	$(t).hide(); // DOM객체를 jQuery함수의인자로 전달하여jquery객체로 만듦
+}
+</script>
+</head>
+<body>
+	<h4 onclick="proc(this)">클릭하면 사라집니다1</h4>
+	<h4 onclick="proc(this)">클릭하면 사라집니다2</h4>
+	<h4 onclick="proc(this)">클릭하면 사라집니다3</h4>
+	<h4 onclick="proc(this)">클릭하면 사라집니다4</h4>
+	<h4 onclick="proc(this)">클릭하면 사라집니다5</h4>
+	
+	<div id="jq">
+	<h4>클릭하면 사라짐1</h4>
+	<h4>클릭하면 사라짐2</h4>
+	<h4>클릭하면 사라짐3</h4>
+	<h4>클릭하면 사라짐4</h4>
+	<h4>클릭하면 사라짐5</h4>
+	<button type="button">보이기</button>
+	</div>
+</body>
+</html>

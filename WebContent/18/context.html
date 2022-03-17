@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<pre>
+		$('selector', context)
+		선택자를 검색할 범위를 설정하며, 생략시 문서 전체에서 선택자 검색
+	</pre>
+	<p>(p)무궁화 꽃이</p>
+	<p>(p)피었습니다</p>
+	<div id="d1">
+		<p>(div>p)#d1속 p태그</p>
+	</div>
+	<div>
+		<p>(div>p)div속 p태그</p>
+	</div>
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<script>
+		$('p').css('background', 'blue');
+
+		// div안의 p랜덤색상 적용
+		('div').on('click', function() {
+			let cr = parseInt(Math.random() * 256);
+			let cg = parseInt(Math.random() * 256);
+			let cb = parseInt(Math.random() * 256);
+			$('p', this).css('color',`rgb(${cr}, ${cg}, ${cb})`);
+		})
+	</script>
+</body>
+</html>

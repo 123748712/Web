@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+
+}
+</style>
+<script>
+function readFile() {
+	let files = document.getElementById('attachFile').files;
+	let file = files[0];
+ var reader = new FileReader();
+
+//  let idx = file.type.indexOf("/");
+//  let type = file.type.substring(0,idx);
+ 	file.type.split("/")[0];
+ 
+ if(type == 'text'){
+	 // text >> readAsText
+	 let reader = new FileReader();
+	 reader.readAsText(file);
+	 reader.onload = function() {
+		document.getElementById('result1').innerText = reader.result;
+	}
+	 let info = `파일명 : ${file.name}\n`;
+	 	 info += `파일형식 : ${file.type}\n`;
+	 	 info +=`파일크기 : ${file.size} bytes\n`;
+	 	 info += `수정날짜 : ${file.lastModifiedDate.toLocaleString()}`;
+	 	 document.getElementById('result2').value = info;
+ } else if(type == 'image'){
+	 // image >> readAsDataURL
+	 let reader = new FileReader();
+	 reader.readAsDataURL(file);
+	 reader.onload = function() {
+		let vimg = document.createElement('img');
+		vimg.setAttribute("src", reader.result);
+		vimg.width = 120;
+		vimg.height = 150;
+		document.getElementById('result1').appendChild(vimg);
+	}
+	 let info = `파일명 : ${file.name}\n`;
+	 	 info += `파일형식 : ${file.type}\n`;
+	 	 info += `파일크기 : ${file.size} bytes <br>\n`;
+	 	 info += `수정날짜 : ${file.lastModifiedDate.toLocaleString()}`;
+	 	 document.getElementById('result2').value = info;
+ } else {
+	 document.getElementById('result2').value = "다른형식파일";
+ }
+}
+</script>
+</head>
+<body>
+	<input type="file" id="attachFile">
+	<button type="button" onclick="readFile()">파일읽기</button><br>
+<!--  	<textarea id="result" rows="6" cols="60"></textarea> -->
+	<h4>결과출력(FileReader객체)</h4>
+	<div id="result1"></div>
+
+	<h4>결과출력(File객체)</h4>
+ 	<textarea id="result2" rows="6" cols="60"></textarea>
+</body>
+</html>
