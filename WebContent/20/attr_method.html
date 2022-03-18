@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+img {
+  width: 50px;
+  height: 50px;
+}
+</style>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+  <h4>img요소의 src속성에서 파일명만 추출하여 title속성으로 설정하기</h4>
+  <div class="box">
+    <img src="../image/iu.jpg" alt="">
+    <img src="../image/suzy.jpg" alt="">
+    <img src="../image/bts.jpg" alt="">
+    <img src="../image/spgb.png" alt="">
+    <img src="../image/check.png" alt="check.png">
+  </div>
+  <script>
+  //get- 첫 요소만 반환
+  //console.log($('img').attr('src'));
+  
+  //set- 모든 항목에 일괄 적용
+  $('img').attr('title','title1');
+  
+  //함수 내부에서 리턴하는 값으로 title속성 값 적용하기
+  $('img').attr('title',function(){
+	  //this를 이용해 함수 내부의 값을 순차적으로 반환받음
+	  //console.log($(this).attr('src'));
+	  let src = $(this).attr('src');
+	  //src에서 파일명 추출하기
+	  let start = src.lastIndexOf("/")+1;
+	  let end = src.lastIndexOf(".");
+	  let fnm = src.substring(start,end);
+	  //console.log(fnm);
+	  return fnm;
+  });
+  //속성 제거하기
+  $('img').eq(4).removeAttr('src');
+  
+  //속성 추가하기 - {}중괄호를 이용해서 여러가지 속성 적용
+  $('img').eq(4).attr({'src':'../image/kdsky.jpg'
+	  					,'alt':'강스카이'
+	  					,'title':'20'});
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

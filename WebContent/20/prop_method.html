@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#d1 {
+  border: 5px dashed red;
+  height: 100px;
+  padding: 5px;
+}
+</style>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h4>실행 - 현재 상태 값 출력 / 변경 - 현재 상태를 반대 상태로 변경</h4>
+  <div class="box">
+    <form>
+       체크박스 : <input type="checkbox" id="checkTest" checked><br><br>
+       라디오버튼 : <input type="radio"	 id="radioTest"><br><br>
+       셀렉트박스
+       <select id="selectTest">
+         <option value="">-</option>
+         <option value="1">하나</option>
+         <option value="2">둘</option>
+         <option value="3">셋</option>
+         <option value="4">넷</option>
+       </select><br><br>
+       text요소(readonly) : <br>
+       <input type="text" value="가나다" id="textTest" readonly><br><br>
+       button요소 : <br>
+       <input type="button" value="실행" id="runBtn">
+       <input type="button" value="변경" id="changeBtn"><br><br>
+    </form>
+    <div id="d1"></div>
+  </div>
+  
+  <br><br>
+  
+  <div class="box">
+    <div>체크박스(전체선택/해제) <br>
+      <input type="checkbox" id="chkAll">전체선택
+      <input type="checkbox" class="chk">1
+      <input type="checkbox" class="chk">2
+      <input type="checkbox" class="chk">3
+      <input type="checkbox" class="chk">4
+      <input type="checkbox" class="chk">5
+    </div>
+  </div>
+<script>
+//전체선택 체크박스로 전체선택하기
+$('#chkAll').on('click',function(){
+	let chk = $(this).prop('checked');
+	console.log(chk);
+	//$('.chk').prop('checked',chk);
+	//$('#chkAll').nextAll().prop('checked',chk);
+	$(this).parent().find('.chk').prop('checked',chk)
+});
+//하위 체크박스 요소들이 모두 체크되었을 때 전체선택도 체크되기
+$('.chk').on('click',function(){
+	let size = $('.chk:checked').length;
+	if(size < 5){
+		$('#chkAll').prop('checked',false);
+	}else{
+		$('#chkAll').prop('checked',true);
+	}
+});
+
+
+$('#runBtn').on('click',function(){
+	let rst = `체크박스 : ${$('#checkTest').prop('checked')} <br>`;
+		rst += `라디오 : ${$('#radioTest').prop('checked')} <br>`;
+		rst += "셀렉트박스 : " + $('#selectTest option').eq(1)
+							.prop('selected') + "<br>";
+		rst += `textArea : ${$('#textTest').prop('readonly')}`;
+	$('#d1').html(rst);
+});
+$('#changeBtn').on('click',function(){
+	//현재 셋팅된 상태 값
+	let chk = $('#checkTest').prop('checked');
+	let rdo = $('#radioTest').prop('checked');
+	let sel = $('#selectTest option').eq(1).prop('selected');
+	let txa = $('#textTest').prop('readonly');
+	//상태값 반대로 설정
+	$('#checkTest').prop('checked',!chk);
+	$('#radioTest').prop('checked',!rdo);
+	$('#selectTest option').eq(1).prop('selected',!sel);
+	$('#textTest').prop('readonly',!txa);
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
