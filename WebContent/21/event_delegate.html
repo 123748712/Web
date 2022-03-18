@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="d1">
+	<input type="button" value="버튼" class="btn">
+	<input type="button" value="해제" id="clear">
+  </div>
+<script>
+// delegate방식 (위임,대리)
+// 부모의 이벤트를 물려받아 지정된 선택자에 이벤트를 연결해주는 방식
+// $(selector의부모).on(event,selector,fn)
+$('#d1').on('click','.btn',function(){
+	//새로운 요소 생성하기
+	$('<input>',{
+		'type'	: 'button',
+		'value'	: '새버튼',
+		'class'	: 'btn'
+	}).appendTo('#d1');
+});
+
+$('#clear').on('click',function(){
+	$('.btn').off('click');
+});
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

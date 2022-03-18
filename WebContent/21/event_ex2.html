@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+img {
+  width: 40px;
+}
+#show {
+  display: none;
+}
+</style>
+</head>
+<body>
+  <img src="../image/iu.jpg" alt="아이유" src2="../image/suzy.jpg">
+  <img src="../image/suzy.jpg" alt="수지" src2="../image/iu.jpg">
+  <img src="../image/bts.jpg" alt="방탄" src2="../image/ksky.jpg">
+  <img src="../image/ksky.jpg" alt="하늘" src2="../image/bts.jpg">
+  <img src="../image/spgb.png" alt="밥" src2="../image/check.png">
+  <input type="button" value="보이기" id="show">
+<script>
+  var src1 = "";
+  $('img').on('mouseover',function(){
+	  src1 = $(this).attr('src');
+	  let src2 = $(this).attr('src2');
+	  $(this).attr('src',src2);
+  });
+  $('img').on('mouseout',function(){
+	  $(this).attr('src',src1);
+  });
+  //더블클릭시 이미지 사라짐
+  $('img').on('dblclick',function(){
+	  $(this).hide();
+	  if($('img:visible').length < 1) $('#show').show();
+  });
+  //버튼 눌러 이미지 다시 보여주기
+  $('#show').on('click',function(){
+	  $('img').show();
+	  $(this).hide();
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

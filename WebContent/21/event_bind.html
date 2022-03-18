@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="d1">
+	<input type="button" value="버튼" class="btn">
+	<input type="button" value="해제" id="clear">
+  </div>
+<script>
+// bind방식
+// 실행전(로딩전) 이미 document에 생성된 요소에만 이벤트 핸들러 동작
+// $(selector).on(event,fn)
+$('.btn').on('click',function(){
+	//새로운 요소 생성하기
+	$('<input>',{
+		'type'	: 'button',
+		'value'	: '새버튼',
+		'class'	: 'btn'
+	}).appendTo('#d1');
+});
+$('#clear').on('click',function(){
+	$('.btn').off('click');
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

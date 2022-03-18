@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+          width: 150px;
+          height: 200px;
+          border: 5px solid lightgray;
+          padding: 10px;
+          background: beige;
+        }
+    </style>
+</head>
+<body>
+  <div></div>    
+</body>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+  let v_div = document.querySelector('div');
+  $(v_div).html("width() : " + $(v_div).width() + "px <br>"
+              + "height() : " + $(v_div).height() + "px <br><br>"
+              + "innerW() : " + $(v_div).innerWidth() + "px <br>"
+              + "innerH() : " + $(v_div).innerHeight() + "px <br><br>"
+              + "outerW() : " + $(v_div).outerWidth() + "px <br>"
+              + "outerH() : " + $(v_div).outerHeight() + "px");
+
+  document.write($(document).width() + "*" + $(document).height());
+
+</script>  
+</html>

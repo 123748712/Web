@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  width: 40%;
+  height: 200px;
+  background-color: yellow;
+  padding: 40px;
+}
+</style>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div></div>
+<script>
+$('div').on('mousedown',function(ev){ //e:발생된 이벤트에 대한 정보를 갖음
+	console.log(ev);
+	let str = "";
+	str += "type: " + ev.type + "<br>";
+	str += `target: ${event.target} <br>`;
+	str += `pageX: ${event.pageX} <br>`;		//전체 문서 기준
+	str += `pageY: ${event.pageY} <br>`;	
+	str += `screenX: ${event.screenX} <br>`;	//모니터 화면 기준
+	str += `screenY: ${event.screenY} <br>`;
+	str += `button: ${event.button} <br>`;
+	
+	$('div').html(str);
+});
+</script>
+</body>
+</html>

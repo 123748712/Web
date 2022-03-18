@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+.pColor {
+  color: lightgray;
+}
+.pBg {
+  background: green;
+}
+div {
+  width: 100%;
+  height: 50px;
+}
+img {
+  width: 100px;
+}
+.borderBlue {
+  border: 2px solid blue;
+  border-radius: 50%;
+}
+.borderRed {
+  border: 4px double red;
+  border-radius: 50%;
+}
+</style>
+<script>
+$(function(){
+	$('#btn').on('click',function(){
+		$('p').addClass('pColor');
+	});
+	$('p').on('click',function(){
+		//$(this).addClass('pBg');
+		
+		//hasClass 이용해서 - add 또는 remove 적용
+		/* if($(this).hasClass('pBg')){
+			$(this).removeClass('pBg');
+		}else {
+			$(this).addClass('pBg');
+		} */
+		
+		//toggleClass로 더 간단하게..
+		$(this).toggleClass('pBg');
+	});
+	
+	$('div:empty').on('mouseover',function(){
+		$(this).addClass('pBg');
+	});
+	$('div:empty').on('mouseout',function(){
+		$(this).removeClass('pBg');
+	});
+	
+	/* $('img').on('mouseover',function(){
+		$(this).addClass('borderBlue');
+	});
+	$('img').on('mouseout',function(){
+		$(this).removeClass('borderBlue');
+	}); */
+	
+	//hover event
+	/* $('img').hover(function(){
+		$(this).addClass('borderRed');
+	},function(){
+		$(this).removeClass('borderRed');
+	}); */
+	
+	//click event - toggle
+	$('img').on('click',function(){
+		$(this).toggleClass('borderBlue');
+	});
+	
+});
+</script>
+</head>
+<body>
+  <input type="button" value="확인" id="btn">
+  <p>click!!</p>
+  <p>click!!</p>
+  <p>click!!</p>
+  <p>click!!</p>
+  <p>click!!</p>
+  
+  <div></div>
+  
+  <img src="../image/iu.jpg" alt="아이유">
+  <img src="../image/suzy.jpg" alt="수지">
+  <img src="../image/bts.jpg" alt="방탄">
+  <img src="../image/ksky.jpg" alt="하늘">
+  <img src="../image/spgb.png" alt="밥">
+</body>
+</html>
