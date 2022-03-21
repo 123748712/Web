@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <input type="button" id="hide" value="hide">
+  <input type="button" id="show" value="show">
+  <input type="button" id="togl" value="toggle">
+  <input type="button" id="sUp" value="slideUp">
+  <input type="button" id="sDown" value="slideDown">
+  <input type="button" id="sTogl" value="slideToggle">
+  <input type="button" id="fOut" value="fadeOut">
+  <input type="button" id="fIn" value="fadeIn">
+  <input type="button" id="fTogl" value="fadeToggle">
+  <br><br>
+  
+  <div id="d1">
+    <img src="../image/suzy.jpg" alt="u" id="imgs">
+  </div>
+<script>
+
+$('#hide').on('click',function(){
+	$('img').hide(1000, function(){
+	  alert("숨김");
+	});
+});
+$('#show').on('click',function(){
+  $('img').show('fast');
+});
+$('#togl').on('click',function(){
+	$('img').toggle();
+});
+$('#sUp').on('click',function(){
+// 	$('img').slideUp(100);
+	$('#d1').slideUp(1000);
+});
+$('#sDown').on('click',function(){
+	$('#d1').slideDown(3000);	
+});
+$('#sTogl').on('click',function(){
+	$('#d1').slideToggle();
+});
+$('#fOut').on('click',function(){
+	$('img').fadeOut();
+});
+$('#fIn').on('click',function(){
+	$('img').fadeIn();
+});
+$('#fTogl').on('click',function(){
+	$('img').fadeToggle();
+});
+</script>
+</body>
+</html>

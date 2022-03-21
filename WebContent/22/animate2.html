@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+img {
+  width: 200px;
+  position: relative;
+}
+</style>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <img src="../image/iu.jpg" alt="u" id="imgs"> <br>
+ 
+  <script>
+  //중앙을 기점으로 안쪽으로 이동하려는 속성은 +기호, 바깥쪽 이동은 -기호 사용
+  $('img').animate({bottom : '-=100'})
+  			.animate({opacity : '0.1'})
+  			.delay(300)
+  			.animate({bottom : '+=100'})
+  			.delay(300)
+  			.animate({opacity : '1'});
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <pre>
+  	JavaScript Object Notation
+  	- 자바스크립트의 리터럴 표현식을 활용해 간단한 포맷으로 데이터를 구분할 수 있음
+  	- 사람이 읽을 수 있는 텍스트 기반 데이터 표준으로 {"key":"value"} 형태
+  	- XML 대안으로 좀 더 쉽게 데이터를 교환하고 저장하기 위해 만들어짐
+  	- 자바에서 JSON을 다룰때 주로 사용하는 클래스 GSON과 JACKSON
+  	- 자바스크립트에서 JSON 내장객체를 이용
+  </pre>
+  	<button>JSON변환테스트</button>
+  	<div></div>
+  	<script>
+  	$('button').on('click',function(){
+  		let obj = {
+  				이름 : "홍길동",
+  				나이 : 25,
+  				성별 : "남",
+  				주소 : "서울 양천구 목동",
+  				특기 : ["농구","도술"],
+  				가족관계 : {아버지 : "홍판서", 어머니 : "춘섬"}
+  		};
+
+  		//자바스크립트 object >>> JSON문자열로 변환
+  		let jsonStr = JSON.stringify(obj);
+  		console.log(jsonStr);
+  		
+  		//JSON문자열 >>> 자바스크립트 Object로 변환
+  		let jsonObj = JSON.parse(jsonStr);
+  		console.log(jsonObj);
+  		
+  		let str = "1차 변환(obj->json) : " + jsonStr + "<br><br>";
+  			str += `2차 변환(json->obj) : ${jsonObj} <br>`;
+  			//key값으로 value 가져오기
+  			str += `이름 : ${jsonObj.이름} <br>`;
+  			str += `나이 : ${jsonObj.나이} <br>`;
+  			str += `성별 : ${jsonObj.성별} <br>`;
+  			str += `주소 : ${jsonObj.주소} <br>`;
+  			str += `특기 : ${jsonObj.특기} <br>`;
+  			str += `가족관계 : ${jsonObj.가족관계.어머니}`;
+  		$('div').html(str);
+  	});
+  	</script>
+  
+</body>
+</html>
+
+
+
+
+

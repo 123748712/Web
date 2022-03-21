@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="box1">
+    <h4>form을 이용한 전송</h4>
+    <form>
+      <input name="info">
+      <input type="button" value="확인"> <br><br>
+      <div id="d1"></div>
+    </form>
+  </div>
+  
+  <div id="box2">
+    <h4>ajax를 이용한 전송</h4>
+    <input type="button" value="확인"> <br><br>
+    <div id="d2"></div>
+  </div>
+  <script>
+  $('#box2 input[type=button]').on('click',function(){
+	  //서버로 요청하기 위해 객체 필요
+	  //XMLHttpRequest객체 : 서버와 상호작용하기 위해 주로 ajax에서 사용
+	  //					새로고침 없이 url로부터 데이터를 받아옴
+	  let request = new XMLHttpRequest();
+  	  //open(method, url, async) async- default : true(비동기)
+	  request.open("get","ajaxTest.jsp",true);
+	  request.send();
+	  
+	  //서버로부터 응답 데이터 전달받기
+	  //onreadystatechange 
+	  //	: readyState값이 변할 때마다 자동으로 호출되는 함수를 설정
+	  //	이 속성을 사용해서 서버에 요청한 데이터의 존재와 응답 도착 순간을 특정한다
+	  //readyState : send()시 서버에서 요청페이지의 상태 변화를 코드로 전송해 줌
+	  //	: 0-send전준비 1-로딩중 | 2-로딩완료 3-서버처리중 4-서버처리끝
+	  //status : 결과에 대한 상태 코드 확인
+	  //	: 200-결과 성공 403-요청오류 404-요청페이지없음 500-소스코드에러(서버에러)
+	  request.onreadystatechange = function(){
+		  //console.log(this.readyState, this.status);
+		  if(this.readyState == 4 && this.status == 200){
+			  //JSON형식의 데이터만 파싱할 수 있음 - 아닐때 에러
+			  let a = JSON.parse(this.responseText);//json->obj
+			  let code = "<ul>";
+			  	  //반복문 사용해서 상세내용 출력	
+			  	  $.each(a,function(i,v){
+			  		  code += "<li>" + a[i] + "</li>";
+	
+			  		  //object형태의 출력시 key로 접근
+// 			  		  code += "<li>" + a[i].name + "</li>";
+// 			  		  code += "<li>" + v.address + "</li>";
+// 			  		  code += "<li>" + this.tel + "</li>";
+			  	  });
+			  	  code += "</ul>";
+			  $('#d2').html(code);
+		  }
+	  }
+  });
+  
+  $('#box1 input:button').on('click',function(){
+	  $('form').attr('action',"formTest.jsp").submit();
+  });
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

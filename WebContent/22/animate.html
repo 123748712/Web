@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+img {
+  position: relative;
+}
+</style>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <img src="../image/suzy.jpg" alt="u" id="imgs"> <br>
+  <input type="button" value=">>>" id="btn1">
+  <input type="button" value="<<<" id="btn2"> <br><br>
+  
+  <input type="button" value="확인" id="btn3">
+  <p id="p1">무궁화 꽃이 피었습니다 - CSS</p>
+  <p id="p2">무궁화 꽃이 피었습니다 - animate</p>
+  
+  <script>
+  $('#btn3').on('click',function(){
+	  $('#p1').css('font-size','+=2px');
+	  $('#p2').animate({'font-size':'+=2px'}, 1000);
+  });
+  
+  
+  $('#btn1').on('click',function(){
+	  $('img').animate({left : '+=10px'}, 100);
+  });
+  $('#btn2').on('click',function(){
+	  $('img').animate({left : '-=10px'}, 100);
+  });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

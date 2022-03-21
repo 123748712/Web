@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+th {
+  background-color: gold;
+}
+</style>
+</head>
+<body>
+  <div id="box1">
+    <input type="button" value="JSONObj"> <br><br>
+    <div id="d1"></div>
+  </div> <br><br>
+  <div id="box2">
+    <input type="button" value="JSONObjArr"> <br><br>
+    <div id="d2"></div>
+  </div>
+  <script>
+  let req = new XMLHttpRequest();
+  
+  $('#box1 :button').on('click',function(){
+	  //요청
+	  req.open("get","jsonObj.jsp");
+	  req.send();
+	  //응답
+	  req.onreadystatechange = function(){
+		  if(this.readyState == 4 && this.status == 200){
+			  let aa = JSON.parse(this.responseText);
+			  
+			  //출력
+			  let code = `${aa.name} <br>`;
+			  	  code += `${aa.tel} <br>`;
+			  	  code += `${aa.addr} <br>`;
+			  	  code += `${aa.email} <br>`;
+			  $('#d1').html(code);
+		  }
+	  }
+  });
+  $('#box2 :button').on('click',function(){
+
+	  //요청
+	  req.open("get","jsonObjArr.jsp");
+	  req.send();
+	  //응답
+	  req.onreadystatechange = function(){
+		  if(this.readyState == 4 && this.status == 200){
+			  let bb = JSON.parse(this.responseText);
+			  
+			  let values = Object.values(bb);
+			  let key = Object.keys(values[0]);
+			  
+			  let code = "<table border='1'>";
+// 			      code += `<tr><th>이름(name)</th><th>전화(tel)</th>`;
+// 			      code += `<th>주소(addr)</th><th>메일(email)</th></tr>`; 
+			      code += `<tr><th>${key[0]}</th><th>${key[1]}</th>`;
+			      code += `<th>${key[2]}</th><th>${key[3]}</th></tr>`; 
+			  
+			  //출력 - 반복 - each()사용
+			  $.each(bb, function(i,v){
+				  code += `<tr>`;
+				  code += `<td>${this.name}</td>`;
+				  code += `<td>${bb[i].tel}</td>`;
+				  code += `<td>${v.addr}</td>`;
+				  code += `<td>${this.email}</td>`;
+				  code += `</tr>`;
+			  });
+			  code += `</table>`;
+			  $('#d2').html(code);
+		  }
+	  }
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+</body>
+</html>
