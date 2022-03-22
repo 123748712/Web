@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="form-group col-md-4">
+      <label for="lprod">LPROD</label>
+      <select class="form-control" id="lprod">
+<!--         <option value="11111">1111111</option> -->
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="prod">PROD</label>
+      <select class="form-control" id="prod">
+      </select>
+    </div>
+    <br>
+    <div id="result" class="form-group col-md-8"></div>
+  </div>
+</body>
+<script>
+$.ajax({
+	url: '../0223/lprod2.jsp',
+	success:function(aaa){
+		let code = "";
+		$.each(aaa,function(){
+			code += `<option value='${this.gu}'>${this.nm}</option>`;
+		});
+		$('#lprod').html(code);
+		$('#lprod').trigger('change');//이벤트 강제 실행
+	},
+	error:function(xhr){
+		alert(xhr.status);
+	},
+	dataType:'json'
+});
+
+//prod정보 조회
+$('#lprod').on('change',function(){
+	$.ajax({
+		url: '/webPro/Prod.do', //MVC2패턴 사용.. controller연결
+		data: {'gu': $(this).val()},
+		success:function(aaa){
+			let code = "";
+			if(aaa.code == "ok"){
+				$.each(aaa.data,function(){
+					code += `<option value='${this.id}'>${this.nm}</option>`;
+				});
+			}else{
+				code += `<option value='0'>데이터 없음</option>`;
+				//상세정보 없을 때 비워주기
+				$('#result').empty();
+			}
+			$('#prod').html(code);
+			$('#prod').trigger('change');
+		},
+		error:function(xhr){
+			alert(xhr.status);
+		},
+		dataType: 'json'	
+	});
+});
+
+//prod상세정보 조회
+$('#prod').on('change',function(){
+	$.ajax({
+		url: '/webPro/Prod.do',
+		type: 'post',
+		data : {'pId':$(this).val()},
+		success:function(a){
+		  if(a.code == "ok"){
+			let code = "<table class='table table-condensed' border='1'>";
+				code += "<tr><td>항목</td><td>내용</td></tr>";
+				//반복해서 ..
+				let idx = 0;
+				$.each(a,function(){
+					code += `<tr><td>${Object.keys(a)[idx]}</td><td>${Object.values(a)[idx]}</td></tr>`;
+					idx++;
+				});
+				$('#result').html(code);
+		  }else{
+				//result 화면  remove	...	
+		  }
+		},
+		error:function(xhr){
+			alert(xhr.status);
+		},
+		dataType: 'json'	
+	});
+});
+</script>
+</html>
