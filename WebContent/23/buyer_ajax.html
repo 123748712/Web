@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+p:hover {
+  background: gold;
+}
+</style>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <table border=1>
+    <tr>
+      <th>거래처 이름</th>
+      <th>거래처 상세정보</th>
+    </tr>
+    <tr>
+      <td id="names"></td>
+      <td id="details"></td>
+    </tr>
+  </table>
+  <script>
+  //ajax단축 - $.get(url,data,success,dataType)
+  $.get(
+	'buyerNames.jsp',
+	function(aaa){
+		//반복적으로 출력
+		$.each(aaa,function(){
+			// <p id="P10101">삼성컴퓨터</p>
+			let pTag = $('<p></p>',{
+				"id"	: this.id,
+				"text"	: this.name
+			});
+			$('#names').append(pTag);
+		});
+	},
+  	'json' //전달받을 응답데이터의 타입 지정 
+  );
+
+  //동적으로 생성된 p요소에 delegate방식으로 이벤트 부여
+  //선택자의 부모에 동적요소가 올 수 없음
+  $('#names').on('click','p',function(){
+	  
+	//ajax단축 - $.post(url,data,success,dataType)
+	  $.post(
+		'buyerDetails.jsp',
+		{'id' : $(this).attr('id')},
+		function(data){
+			let code = `<table border="1">`;
+
+			let idx = 0;	//인위적인 index를 만들어 사용
+			$.each(data,function(a,b){	//넘겨받은 데이터가 오브젝트라서 매개변수(i)를 index로 사용하지 못함
+				code += `<tr>`;
+				code += `<td>${Object.keys(data)[idx]}</td>`;
+				code += `<td>${Object.values(data)[idx]}</td>`;
+				code += `</tr>`
+				idx++;
+			});
+				/* code += `<tr>`;
+				code += `<td>제품번호</td>`;
+				code += `<td>${data.lgu}</td>`;
+				code += `</tr>`;
+				...반복적인 형태로 구성
+				*/
+				code += `</table>`;
+			$('#details').html(code);
+		},
+		'json'
+	  );
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+</body>
+</html>
+
+
+
+

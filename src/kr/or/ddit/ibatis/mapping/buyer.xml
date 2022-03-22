@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="buyer">
+
+<!--   <typeAlias alias="buyerVO" type="kr.or.ddit.buyer.vo.BuyerVO"/> -->
+
+  <select id="buyerNames" resultClass="buyerVO">
+  	SELECT BUYER_ID, BUYER_NAME FROM BUYER
+  </select>
+  
+  <select id="buyerDetails" resultClass="buyerVO" parameterClass="String">
+  	SELECT * FROM BUYER WHERE BUYER_ID = #asdf#
+  </select>
+
+</sqlMap>
+
