@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+th {
+  background-color: gray;
+}
+</style>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <button id="btn1">json데이터</button><br>
+  <div id="d1"></div> <br><br>
+  <button id="btn2">html데이터</button><br>
+  <div id="d2"></div>
+  <script>
+  $('#btn1').on('click',function(){
+	  //lprod정보 가져오기
+	  $.ajax({
+		  url : 'lprod2.jsp',
+		  success:function(a){
+			let code = `<table border="1">`;
+// 				code += `<tr><th>ID</th><th>GU</th><th>NM</th></tr>`;
+				code += `<tr><th>${Object.keys(Object.values(a)[5])[0]}</th>`;
+				code += `<th>${Object.keys(Object.values(a)[5])[1]}</th>`;
+				code += `<th>${Object.keys(Object.values(a)[5])[2]}</th></tr>`;
+				$.each(a,function(i,v){
+					code += `<tr><td>${a[i].id}</td>`;
+					code += `<td>${this.gu}</td>`;
+					code += `<td>${v.nm}</td></tr>`;
+				});
+				code += `</table>`;
+			$('#d1').html(code);
+		  },
+		  error:function(xhr){
+			  alert("상태 : " + xhr.status);
+		  },
+		  dataType: 'json'
+	  });
+  });
+  $('#btn2').on('click',function(){
+	  //lprod정보 가져오기
+	  $.ajax({
+		  url : 'lprod.jsp',
+		  success:function(a){
+			$('#d2').html(a);
+		  },
+		  error:function(){
+			  alert("상태 : " + xhr.status);
+		  },
+		  dataType: 'html'
+	  });
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+</body>
+</html>

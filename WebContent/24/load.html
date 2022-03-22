@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="d1"></div>
+  <div id="d2"></div>
+  <script>
+  /*
+  	load() : 서버와 통신하여 데이터를 가져오는 메소드
+    ajax()보다 간소화된 비동기호출 메소드로 불필요한 리소스를 줄이고
+    	코드를 간결하게 한다
+  */
+  $('#d1').load('loadTest.jsp span',{a:'데이터',b:'넘어가유'});
+  $('#d2').load('./lprod.jsp', function(a,b,c){
+// 	  alert(a);
+	  alert(b + ":" + c.status);//b: status(문자), c:xhr
+  });
+  
+  
+  
+  
+  
+  
+//   $('button').click(function(){
+// 	  let a = "apple";
+// 	  let b = "pie";
+	  
+// 	  $('#d1').load("loadTest.jsp", {'a':a , 'b':b}, cb); 
+//   });
+  
+//   function cb(a,b,c){
+//     alert(a);
+//     alert(b + ":" + c.status);
+//   }
+  </script>
+</body>
+</html>
+
+
+
+
