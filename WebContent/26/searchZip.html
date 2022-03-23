@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-group col-md-8">
+      <p>찾는 동 입력ㅎㅏ세요</p>
+      <input id="dong" class="form-control">
+    </div>
+    <div class="form-group col-md-8">
+      <input type="button" value="검색" id="btnCode" 
+      	class="btn btn-primary">
+    </div>
+    <div id="rst"></div>
+  </div>
+  <script>
+  $('#btnCode').on('click',function(){
+	$.ajax({
+	  url: 'dongSearch.jsp',
+	  data: {'dong':$('#dong').val()},
+	  success:function(a){
+		  let code = `<table border='1' class='table table-hover'>`;
+		  	  code += `<tr><td>우편번호</td><td>주소</td><td>번지</td></tr>`;
+		  	  $.each(a,function(){
+		  		 code += `<tr class='ziptr'>`; 
+		  		 code += `<td>${this.code}</td>`; 
+		  		 code += `<td>${this.addr}</td>`; 
+		  		 code += `<td>${this.bunji}</td>`; 
+		  		 code += `</tr>`; 
+		  	  });
+		  	  code += `</table>`;
+		  	  $('#rst').html(code);
+	  },
+	  error:function(xhr){
+		  alert(xhr.status);
+	  },
+	  dataType:'json'
+	});
+  });
+  
+  //선택한 값 출력
+  $('#rst').on('click','.ziptr',function(){
+	  let zCode = $('td:eq(0)',this).text();
+	  let addr = $('td:eq(1)',this).text();
+	  console.log(zCode, addr);
+	  //부모창(opener)에 값 출력
+	  $('#zip', opener.document).val(zCode);
+	  $('#add1', opener.document).val(addr);
+	  close();
+  });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

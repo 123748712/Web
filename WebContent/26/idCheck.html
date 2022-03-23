@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script src="../js/regex.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><style>
+</style>
+</head>
+<body>
+  <div class="container">
+  <h2>회원가입</h2>
+  <form class="form-horizontal" method="post" onsubmit="return valid()">
+    
+    <div class="form-group">
+      <label for="id" class="control-label col-sm-2">아이디</label>
+      <span class="sp"></span>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="id" 
+        	placeholder="Enter id" name="mem_id"
+        	required pattern="[a-zA-Z][a-zA-Z0-9]{3,7}">
+      </div>
+<!--       <button type="button" class="btn btn-sm btn-success" id="idChk">중복검사</button> -->
+      <span id="result"></span>
+    </div>
+    
+    <div class="form-group">
+      <label for="name" class="control-label col-sm-2">이름</label>
+      <span class="sp"></span>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="name"
+        name="mem_name" required pattern="[가-힣]{2,5}">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="bir" class="control-label col-sm-2">생년월일</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="bir" name="mem_bir">
+        <span class="sp"></span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="pass" class="control-label col-sm-2">비밀번호</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" 
+        id="pass" name="mem_pass" required
+        pattern="(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+]).{8,}">
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label for="hp" class="control-label col-sm-2">휴대전화</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="hp" name="mem_hp" 
+        placeholder="010-0000-0000" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label for="mail" class="control-label col-sm-2">이메일</label>
+      <div class="col-sm-3">
+        <input type="email" class="form-control" 
+        id="mail" name="mem_mail"
+        pattern="[0-9a-zA-Z]+@[0-9a-zA-Z]+(\.[a-z]+){1,2}">
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label for="zip" class="control-label col-sm-2">우편번호</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="zip" name="mem_zip">
+      </div>
+      <button type="button" id="popupBtn" class="btn btn-info">우편(popup)검색</button>
+<!--       <button type="button" id="modalBtn" class="btn btn-info">우편(modal)검색</button> -->
+      <button type="button" data-backdrop="static" data-toggle="modal" data-target="#myModal" id="modalBtn" class="btn btn-info">우편(modal)검색</button>
+    </div>
+    
+    <div class="form-group">
+      <label for="add1" class="control-label col-sm-2">주소</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="add1" name="mem_add1">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="add2" class="control-label col-sm-2">상세주소</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="add2" name="mem_add2" required>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-6">
+        <button type="submit" class="btn btn-primary"> 전송</button>
+        <span id="joinspan"></span>
+      </div>
+    </div>
+  </form>
+  </div>
+  
+  <!-- Modal start -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">우편번호찾기</h4>
+      </div>
+      <div class="modal-body">
+        <p>찾는 동을 선택</p>
+        <input id="dong" class="form-control">
+        <input type="button" value="검색" id="btnCode" 
+      						class="btn btn-primary">
+      	<div id="rst"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- Modal end -->
+
+<script>
+function valid(){
+	
+	event.preventDefault(); //기본 기능을 중지시킴
+	//alert("전송한다");
+	
+	/*
+		jquery에서 제공하는 메소드로 form태그 내부 값을 쿼리스트링으로 만듦
+		form안의 value들을 한번에 전송가능한 데이터로 만들어주며
+		주의할 점은 form 데이터의 name과 vo필드명을 동일하게 작성해야 함
+		mem_id=test&mem_name=%EA%B0%80%EA%B0%80&...
+	*/
+// 	let data = $('form').serialize();
+	
+	/* 
+		form 데이터를 Object Array 형태로 만듦
+		[{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+	*/
+	let data = $('form').serializeArray();
+// 	console.log(data);
+	
+	//데이터를 JSON Object형태로 만듦
+// 	let data = $('form').serializeJSON();
+
+	$.ajax({
+		url: '/webPro/Member',
+		type: 'post',
+		data: data,
+		success:function(a){
+			if(a.code == 'ok'){
+				$('#joinspan').html(a.id + "님 환영합니다")
+						.css('color','green');
+			}else{
+				$('#joinspan').html("가입 실패").css('color','red');
+			}
+		},
+		error:function(xhr){
+			alert(xhr.status);
+		},
+		dataType: 'json'
+	});
+}
+
+//모달 창 띄우기 1
+/* $('#modalBtn').on('click',function(){
+	$('#myModal').modal({backdrop:'static'});
+}); */
+// 모달 창 띄우기2 - 속성명 2가지 넣기 (data-toggle, data-target / data-backdrop)
+
+$('#btnCode').on('click',function(){
+	$.ajax({
+	  url: 'dongSearch.jsp',
+	  data: {'dong':$('#dong').val()},
+	  success:function(a){
+		  let code = `<table border='1' class='table table-hover'>`;
+		  	  code += `<tr><td>우편번호</td><td>주소</td><td>번지</td></tr>`;
+		  	  $.each(a,function(){
+		  		 code += `<tr class='ziptr'>`; 
+		  		 code += `<td>${this.code}</td>`; 
+		  		 code += `<td>${this.addr}</td>`; 
+		  		 code += `<td>${this.bunji}</td>`; 
+		  		 code += `</tr>`; 
+		  	  });
+		  	  code += `</table>`;
+		  	  $('#rst').html(code);
+	  },
+	  error:function(xhr){
+		  alert(xhr.status);
+	  },
+	  dataType:'json'
+	});
+  });
+  
+  //선택한 값 출력
+  $('#rst').on('click','.ziptr',function(){
+	let zCode = $('td:eq(0)',this).text();
+	let addr = $('td:eq(1)',this).text();
+	
+	$('#zip').val(zCode);
+	$('#add1').val(addr);
+	
+	//모달창 닫기
+	$('#myModal').modal('hide');
+  });
+
+$('#popupBtn').on('click',function(){
+  //팝업띄우기 - open(url,target또는name,option)
+  open('searchZip.html','','width=500 height=400 top=200 left=200');
+});
+//keyup : 눌렀다 떼는 순간, keydown : 누르는 순간, keypress : 작성되는 순간
+$('#id').on('keyup',function(){
+// $('#idChk').on('click',function(){
+	if($('#id').val().length != 0){
+		//id중복검사
+		$.ajax({
+			url : 'idCheck.jsp',
+	 		data : {'mId' : $('#id').val()},
+			success : function(a){
+//	 			$('#rst').html(a.str).css('color','orange');
+				if(a.code == "ok"){
+					$('#result').html(a.msg).css('color','green');
+				}else{
+					$('#result').html(a.msg).css('color','red');
+				}
+			},
+			error : function(xhr){
+				alert(xhr.status);
+			},
+			dataType : 'json'
+		});
+	}else{
+		$('#rst').html("아이디 입력하세요").css('color','gray');
+	}
+});
+</script>
+</body>
+</html>
